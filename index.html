@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanimozhi - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6C63FF;
+      --secondary: #FF6200;
+      --dark: #2D2B55;
+      --light: #F5F5F7;
+      --gray: #86868B;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: #333;
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    body.dark {
+      background: #121212;
+      color: var(--light);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    body.dark header {
+      background: rgba(20, 20, 20, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      color: var(--primary);
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      margin-left: 0%;
+      margin-right: 10%;
+    }
+
+    header .logo i {
+      margin-right: 8px;
+    }
+
+    header ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    header ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    body.dark header ul li a {
+      color: var(--light);
+    }
+
+    header ul li a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    header ul li a:hover:after {
+      width: 100%;
+    }
+
+    header ul li a:hover {
+      color: var(--primary);
+    }
+
+    /* Sections */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    body.dark .section-title h2 {
+      color: var(--light);
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    /* Home Section */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 101, 132, 0.1) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home:before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      opacity: 0.1;
+    }
+
+    #home:after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      opacity: 0.1;
+    }
+
+    .intro {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro h2 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .intro p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: var(--gray);
+    }
+
+    body.dark .intro p {
+      color: #A0A0A0;
+    }
+
+    .theme-toggle {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+    }
+
+    /* About Section */
+    #about {
+      background: white;
+    }
+
+    body.dark #about {
+      background: #1E1E1E;
+    }
+
+    #about p {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Projects Section */
+    #projects {
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.05) 0%, rgba(255, 101, 132, 0.05) 100%);
+    }
+
+    .project-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .project-card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      width: 350px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    body.dark .project-card {
+      background: #1E1E1E;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark .project-card:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-card i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    body.dark .project-card h3 {
+      color: var(--light);
+    }
+
+    .project-card p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    body.dark .project-card p {
+      color: #A0A0A0;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: white;
+    }
+
+    body.dark #contact {
+      background: #1E1E1E;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    form label {
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    body.dark form label {
+      color: var(--light);
+    }
+
+    form input, form textarea {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    body.dark form input, 
+    body.dark form textarea {
+      background: #2D2D2D;
+      border: 1px solid #444;
+      color: var(--light);
+    }
+
+    form input:focus, 
+    form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    }
+
+    form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    form button:hover {
+      background: #554FD8;
+      transform: translateY(-2px);
+    }
+
+    #formMessage {
+      margin-top: 20px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    body.dark footer {
+      background: #000;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header ul {
+        gap: 15px;
+      }
+      
+      .intro h2 {
+        font-size: 2.5rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .project-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .intro h2 {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <i class="fas fa-code"></i>
+          <span>Kanimozhi R</span>
+        </div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home" class="section">
+    <div class="container">
+      <div class="intro">
+        <h2>Hello, I'm <span class="highlight">Kanimozhi R</span></h2>
+        <p>BCA 2nd Year Student | Web Developer | Tech Enthusiast</p>
+        <p>Studying at Shree Venkateshwara Arts and Science College</p>
+        <button id="theme-toggle" class="theme-toggle">
+          <i class="fas fa-moon"></i> Dark Mode
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
+      <p>
+        I am a passionate BCA 2nd-year student at Shree Venkateshwara Arts and Science College.  
+        I enjoy learning new technologies, building websites, and exploring programming concepts.  
+        My goal is to become a skilled software developer and contribute to real-world projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>My Projects</h2>
+      </div>
+      <div class="project-container">
+        <div class="project-card">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Portfolio Website</h3>
+          <p>This personal digital portfolio built with HTML, CSS, and JavaScript.</p>
+        </div>
+        <div class="project-card">
+          <i class="fas fa-user-graduate"></i>
+          <h3>Student Management System</h3>
+          <p>A mini project for managing student records using C and MySQL.</p>
+        </div>
+        <div class="project-card">
+          <i class="fas fa-robot"></i>
+          <h3>Future Project</h3>
+          <p>Exploring AI and ML concepts in upcoming projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Me</h2>
+      </div>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" rows="5" placeholder="Type your message here" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="formMessage"></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Kanimozhi | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      
+      if (document.body.classList.contains('dark')) {
+        themeIcon.className = 'fas fa-sun';
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+      } else {
+        themeIcon.className = 'fas fa-moon';
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+      }
+    });
+
+    // Form Submission
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      // Simple validation
+      if (name && email && message) {
+        formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+        formMessage.style.color = 'green';
+        
+        // Reset form
+        contactForm.reset();
+      } else {
+        formMessage.textContent = 'Please fill in all fields.';
+        formMessage.style.color = 'red';
+      }
+      
+      // Clear message after 5 seconds
+      setTimeout(() => {
+        formMessage.textContent = '';
+      }, 5000);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
